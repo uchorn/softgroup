@@ -7,6 +7,7 @@ s = 0
 
 (1..100).each do |i|
 	s += i
+	# print "#{i} #{s} "
 end
 
-puts s
+ puts s

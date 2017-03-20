@@ -13,25 +13,26 @@ module Notification
     File.open("#{self.class}.log", 'a') { |file| file.puts(err) }
   end
 
-  def send_message(recepient)
-    puts "#{self.class} to: #{recepient}"
-  end
+#  def send_message(recepient)
+#    puts "#{self.class} to: #{recepient}"
+#  end
 
 # For additional task
-#  
-#  def send_message(recepient)
-#    Service::Deliver.new.send(self.class.to_s.downcase, recepient)
-#  end
+  
+  def send_message(recepient)
+    yield if block_given?
+    Service::Deliver.new.send(self.class.to_s.downcase, recepient)
+  end
 end
 
 module Service
   class Deliver
     def sms(recepient)
-      
+      puts 'Sending message via SMS service'
     end
     
     def email(recepient)
-      
+      puts 'Sending message via Email service'
     end
   end
 end
